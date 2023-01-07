@@ -16,13 +16,13 @@ class CHaserSimulator:
     #コマンド受け取り
     else: 
       #コマンドを文字列からメソッドに変換
-      cmd = self.system.Method.from_string(str)
+      self.system.method = self.system.Method.from_string(str)
 
       #コマンド処理
-      self.system.around = self.system.board.FieldAccessMethod()
+      self.system.around = self.system.board.field_access_method()
 
       #情報を返す
-      return self.system.around
+      return #self.system.around
 
   def get_ready(self):
     return self.__game_step("gr")

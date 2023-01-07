@@ -6,8 +6,7 @@ from enum import Enum
 class GameSystem:
   def __init__(self):
     self.board = GameBoard()
-    self.action: self.Method.Action
-    self.rote: self.Method.Rote
+    self.method: self.Method
     self.around = self.MapObject[9]
 
     self.board.view_field()
@@ -34,9 +33,13 @@ class GameSystem:
       RIGHT = 3,
       UNKNOWN = 4
 
+    action: Action
+    rote: Rote
+
     def from_string(self, str: str):
+      import GameSystem
       #コマンドをメソッドの配列に変換
-      answer: self.Method
+      answer: GameSystem.Method
       if   str[0] == 'w': answer.action = self.Method.Action.WALK
       elif str[0] == 'l': answer.action = self.Method.Action.LOOK
       elif str[0] == 's': answer.action = self.Method.Action.SEARCH

@@ -1,8 +1,11 @@
-import GameSystem
+#import GameSystemfrom 
+from chaser_simulator.GameSystem import GameSystem
+from chaser_simulator.GameBoard import GameBoard
 
 class CHaserSimulator:
   def __init__(self):
     self.system = GameSystem()
+    self.board = GameBoard()
 
   def __game_step(self, str: str):
     getready_flag = True
@@ -19,7 +22,7 @@ class CHaserSimulator:
       self.system.method = self.system.Method.from_string(str)
 
       #コマンド処理
-      self.system.around = self.system.board.field_access_method()
+      self.system.around = self.board.field_access_method()
 
       #情報を返す
       return #self.system.around

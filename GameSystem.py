@@ -1,16 +1,9 @@
 #from chaser_simulator.Map import Map
 #from chaser_simulator.Action import Action
-import GameBoard
+#import GameBoard
 from enum import Enum
 
 class GameSystem:
-  def __init__(self):
-    self.board = GameBoard()
-    self.method: self.Method
-    self.around = self.MapObject[9]
-
-    self.board.view_field()
-  
   class MapObject(Enum):
     NOTHING = 0,
     TARGET  = 1,
@@ -62,6 +55,11 @@ class GameSystem:
       elif  self.Method.rote == self.Method.Rote.LEFT : return [0, -1]
       else: return [0, 0]
 
-  def to_string(self, field:list[int[int]]):
-    #周辺情報を文字列に変換
-    pass
+  class AroundData:
+    import GameSystem
+
+    data: list[GameSystem.Method]
+
+    def to_string(self, field:list[int[int]]):
+      #周辺情報を文字列に変換
+      pass

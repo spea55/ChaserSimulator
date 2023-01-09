@@ -1,22 +1,25 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from GameSystem import *
+from chaser_simulator.GameSystem import GameSystem
 import MapList
 import numpy as np
 
 class GameBoard:
-  def __init__(self):
-    self.height = 17
-    self.width = 15
+  height = 17
+  width = 15
 
-    self.field = np.zeros([self.height, self.width])
+  def __init__(self):
+    self.field = np.zeros([height, self.width])
     self.pos = np.zeros(2)
-    self.score: int
+    self.score: int = 0
+
+    self.import_map()
+    self.view_field()
 
   def import_map(self):
     #MapListからmapをランダムで読み込む
-    self.fieid = []
-    self.pos = []
+    self.field[0][0] = GameSystem.MapObject.BLOCK
+    self.pos = [1, 1]
 
   def view_field(self):
     fig = plt.figure()
@@ -36,7 +39,7 @@ class GameBoard:
         elif self.field[i][j] == GameSystem.MapObject.ITEM:
           ax.add_patch(patches.Circle(xy=(j+0.5 , i+0.5), radius=0.3, fc='b', ec='k'))
 
-        elif self.fieid[i][j] == [self.pos[0], self.pos[1]]:
+        elif self.pos == [i, j]:
           ax.add_patch(patches.Rectangle(xy=(j, i), width=1.0, height=1.0, fc='b', ec='k'))
 
     plt.axis('scaled')

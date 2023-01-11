@@ -1,2 +1,2 @@
-class MapList(): 
+class MapList: 
   

@@ -26,40 +26,36 @@ class GameSystem:
       RIGHT = 3,
       UNKNOWN = 4
 
-    action: Action
-    rote: Rote
+    def __init__(self):
+      self.action = self.Action.UNKNOWN
+      self.rote = self.Rote.UNKNOWN
 
-    def from_string(self, str: str):
-      import GameSystem
+    def from_string(self, str):
       #コマンドをメソッドの配列に変換
-      answer: GameSystem.Method
-      if   str[0] == 'w': answer.action = self.Method.Action.WALK
-      elif str[0] == 'l': answer.action = self.Method.Action.LOOK
-      elif str[0] == 's': answer.action = self.Method.Action.SEARCH
-      elif str[0] == 'p': answer.action = self.Method.Action.PUT
-      else:               answer.action = self.Method.Action.UNKNOWN
+      if   str[0] == 'w': self.action = GameSystem.Method.Action.WALK
+      elif str[0] == 'l': self.action = GameSystem.Method.Action.LOOK
+      elif str[0] == 's': self.action = GameSystem.Method.Action.SEARCH
+      elif str[0] == 'p': self.action = GameSystem.Method.Action.PUT
+      else:               self.action = GameSystem.Method.Action.UNKNOWN
 
-      if   str[1] == 'u': answer.rote = self.Method.Rote.UP
-      elif str[1] == 'd': answer.rote = self.Method.Rote.DOWN
-      elif str[1] == 'r': answer.rote = self.Method.Rote.RIGHT
-      elif str[1] == 'l': answer.rote = self.Method.Rote.LEFT
-      else:               answer.rote = self.Method.Rote.UNKNOWN
-
-      return answer
+      if   str[1] == 'u': self.rote = GameSystem.Method.Rote.UP
+      elif str[1] == 'd': self.rote = GameSystem.Method.Rote.DOWN
+      elif str[1] == 'r': self.rote = GameSystem.Method.Rote.RIGHT
+      elif str[1] == 'l': self.rote = GameSystem.Method.Rote.LEFT
+      else:               self.rote = GameSystem.Method.Rote.UNKNOWN
 
     def get_rote_vector(self):
       #進行方向から位置情報を更新
-      if    self.Method.rote == self.Method.Rote.UP:    return [1, 0]
-      elif  self.Method.rote == self.Method.Rote.DOWN:  return [-1, 0]
-      elif  self.Method.rote == self.Method.Rote.RIGHT: return [0, 1]
-      elif  self.Method.rote == self.Method.Rote.LEFT : return [0, -1]
+      if    self.rote == GameSystem.Method.Rote.UP:    return [1, 0]
+      elif  self.rote == GameSystem.Method.Rote.DOWN:  return [-1, 0]
+      elif  self.rote == GameSystem.Method.Rote.RIGHT: return [0, 1]
+      elif  self.rote == GameSystem.Method.Rote.LEFT : return [0, -1]
       else: return [0, 0]
 
   class AroundData:
-    import GameSystem
+    def __init__(self):
+      self.data = [GameSystem.MapObject.NOTHING] * 9
 
-    data: list[GameSystem.Method]
-
-    def to_string(self, field:list[int[int]]):
+    def to_string(self, field):
       #周辺情報を文字列に変換
       pass

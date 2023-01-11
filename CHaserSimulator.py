@@ -1,37 +1,42 @@
 #import GameSystemfrom 
 from chaser_simulator.GameSystem import GameSystem
 from chaser_simulator.GameBoard import GameBoard
+#import GameSystem
+#import GameBoard
 
 class CHaserSimulator:
   def __init__(self):
-    self.system = GameSystem()
+    system = GameSystem()
+    self.method = system.Method()
+    #self.around = system.Around()
     self.board = GameBoard()
 
-  def __game_step(self, str: str):
+  def __game_step(self, str):
     getready_flag = True
 
+    print("__game_step called")
     #getReady受け取り
-    if getready_flag:
+    #if getready_flag:
       #getReadyに対し、周辺情報を返す
       
-      getready_flag = False
+    #  getready_flag = False
 
     #コマンド受け取り
-    else: 
+    #else: 
       #コマンドを文字列からメソッドに変換
-      self.system.method = self.system.Method.from_string(str)
+    self.method.from_string(str)
 
       #コマンド処理
-      self.system.around = self.board.field_access_method()
+    self.around = self.board.field_access_method(self.method)
 
       #情報を返す
-      return #self.system.around
+    return #self.system.around
 
   def get_ready(self):
     return self.__game_step("gr")
 
   def walk_up(self):
-    return self.__game_step("wp")
+    return self.__game_step("wu")
 
   def walk_down(self):
     return self.__game_step("wd")

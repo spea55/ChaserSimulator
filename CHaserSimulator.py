@@ -8,32 +8,29 @@ class CHaserSimulator:
   def __init__(self):
     system = GameSystem()
     self.method = system.Method()
-    #self.around = system.Around()
+    self.around = GameSystem.AroundData()
     self.board = GameBoard()
 
-  def __game_step(self, str):
-    getready_flag = True
-
+  def __game_step(self, str, gr_flag = False):
     print("__game_step called")
     #getReady受け取り
-    #if getready_flag:
+    if gr_flag and str == "gr":
       #getReadyに対し、周辺情報を返す
-      
-    #  getready_flag = False
+      self.board.field_access_around(self.board.team_pos)
 
     #コマンド受け取り
-    #else: 
+    elif gr_flag and str != "gr": 
       #コマンドを文字列からメソッドに変換
-    self.method.from_string(str)
+      self.method.from_string(str)
 
       #コマンド処理
-    self.around = self.board.field_access_method(self.method)
+      self.around = self.board.field_access_method(self.method)
 
       #情報を返す
-    return #self.system.around
+      return [int(x) for x in self.around.to_string()]
 
   def get_ready(self):
-    return self.__game_step("gr")
+    return self.__game_step("gr", True)
 
   def walk_up(self):
     return self.__game_step("wu")

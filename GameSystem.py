@@ -56,6 +56,13 @@ class GameSystem:
     def __init__(self):
       self.data = [GameSystem.MapObject.NOTHING] * 9
 
-    def to_string(self, field):
-      #周辺情報を文字列に変換
-      pass
+    def to_string(self):
+      #文字列に変換
+      str = ""
+      for obj in self.data:
+        if   obj == GameSystem.MapObject.NOTHING: str += "0"
+        elif obj == GameSystem.MapObject.TARGET:  str += "1"
+        elif obj == GameSystem.MapObject.BLOCK:   str += "2"
+        elif obj == GameSystem.MapObject.ITEM:    str += "3"
+      
+      return str
